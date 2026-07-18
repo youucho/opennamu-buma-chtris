@@ -87,94 +87,91 @@
                     </div>
                 </div>
                 <div class="navbar-end">
-		<div class="navbar-end">
-		<div class="navbar-item">
-		<div class="field has-addons">
-		<div class="control has-icons-left">
-		    <form method="post" action="/search" id="search" role="search">
-		    <input id="search_input" class="input is-primary ui-autocomplete-input" name="search" placeholder="{{'search'|load_lang}}" autocomplete="off" type="search">
-			<span class="icon is-small is-left">
-			    <i class="fas fa-search"></i>
-			</span>
-		    </div>
-		    <div class="control">
-		        <button class="button" method="post" type="submit" formaction="/goto"><i class="fas fa-search"></i></button>
-		    </div>
-		    <div class="control">
-		        <a href="/random" class="button" id="wikiGoRandomBtn">
-			    <span class="icon">
-			        <i class="fas fa-random"></i>
-			    </span>
-		        </a>
-		    </div>
-		    </form>
-		</div>
-	        </div>
-                    </div>
+                    <div class="navbar-item">
+                        <div class="field has-addons">
+                            <!-- form 구조 정상화 -->
+                            <form method="post" action="/search" id="search" role="search" style="display: flex;">
+                                <div class="control has-icons-left">
+                                    <input id="search_input" class="input is-primary ui-autocomplete-input" name="search" placeholder="{{'search'|load_lang}}" autocomplete="off" type="search">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </div>
+                                <div class="control">
+                                    <button class="button" type="submit" formaction="/goto"><i class="fas fa-search"></i></button>
+                                </div>
+                                <div class="control">
+                                    <a href="/random" class="button" id="wikiGoRandomBtn">
+                                        <span class="icon">
+                                            <i class="fas fa-random"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div class="navbar-item has-dropdown is-hoverable">
-                        <a href="#" class="navbar-link">
-				{% if user_login == 1 %}
-					<span class="nav-icon">
-					<i class="fas fa-user"></i>
-					</span> {{user_name}}</a>
-				{% else %}
-					<span class="nav-icon">
-					<i class="fas fa-user-secret"></i>
-					</span>Guest</a>
-				{% endif %}
-							<div class="navbar-dropdown is-right">
-								<a href="/user" class="navbar-item">
-								<span class="icon">
-								<i class="fas fa-tools"></i>
-								</span> {{'user_tool'|load_lang}}</a>
-								<a href="/change" class="navbar-item">
-								<span class="icon">
-								<i class="fas fa-user-cog"></i>
-								</span> {{'user_setting'|load_lang}}</a>
-								{% if user_login == 1 %}
-								<a href="/w/user:{{user_ip}}" class="navbar-item">
-								<span class="icon">
-								<i class="fas fa-user-tag"></i>
-								</span> {{'user_document'|load_lang}}</a>
-								{% endif %}
-								<div class="navbar-divider"></div>
-								<a href="/record/{{user_ip}}" class="navbar-item">
-								<span class="icon">
-								<i class="fas fa-chart-line"></i>
-								</span> {{'edit_record'|load_lang}}</a>
-								<a href="/record/topic/{{user_ip}}" class="navbar-item">
-								<span class="icon">
-								<i class="fas fa-chart-bar"></i>
-								</span> {{'discussion_record'|load_lang}}</a>
-								{% if user_login == 1 %}
-								<a href="/watch_list" class="navbar-item">
-								<span class="icon">
-								<i class="fas fa-highlighter"></i>
-								</span> {{'watchlist'|load_lang}}</a>
-								<a href="/star_doc" class="navbar-item">
-								<span class="icon">
-								<i class="fas fa-star"></i>
-								</span> {{'star_doc'|load_lang}}</a>
-								{% endif %}
-								<div class="navbar-divider"></div>
-								{% if user_login == 1 %}
-								<a href="/logout" class="navbar-item">
-								<span class="icon">
-								<i class="fas fa-sign-in-alt"></i>
-								</span> {{'logout'|load_lang}}</a>
-								{% else %}
-								<a href="/login" class="navbar-item">
-								<span class="icon">
-								<i class="fas fa-user-edit"></i>
-								</span> {{'login'|load_lang}}</a>
-								<a href="/register" class="navbar-item">
-								<span class="icon">
-								<i class="fas fa-user-plus"></i>
-								</span> {{'register'|load_lang}}</a>
-                            	{% endif %}
-							</div>
-                        </a>
+                        <!-- 유저 메뉴 a 태그 구조 정상화 -->
+                        {% if user_login == 1 %}
+                            <a href="#" class="navbar-link">
+                                <span class="nav-icon"><i class="fas fa-user"></i></span> {{user_name}}
+                            </a>
+                        {% else %}
+                            <a href="#" class="navbar-link">
+                                <span class="nav-icon"><i class="fas fa-user-secret"></i></span> Guest
+                            </a>
+                        {% endif %}
+                        <div class="navbar-dropdown is-right">
+                            <a href="/user" class="navbar-item">
+                            <span class="icon">
+                            <i class="fas fa-tools"></i>
+                            </span> {{'user_tool'|load_lang}}</a>
+                            <a href="/change" class="navbar-item">
+                            <span class="icon">
+                            <i class="fas fa-user-cog"></i>
+                            </span> {{'user_setting'|load_lang}}</a>
+                            {% if user_login == 1 %}
+                            <a href="/w/user:{{user_ip}}" class="navbar-item">
+                            <span class="icon">
+                            <i class="fas fa-user-tag"></i>
+                            </span> {{'user_document'|load_lang}}</a>
+                            {% endif %}
+                            <div class="navbar-divider"></div>
+                            <a href="/record/{{user_ip}}" class="navbar-item">
+                            <span class="icon">
+                            <i class="fas fa-chart-line"></i>
+                            </span> {{'edit_record'|load_lang}}</a>
+                            <a href="/record/topic/{{user_ip}}" class="navbar-item">
+                            <span class="icon">
+                            <i class="fas fa-chart-bar"></i>
+                            </span> {{'discussion_record'|load_lang}}</a>
+                            {% if user_login == 1 %}
+                            <a href="/watch_list" class="navbar-item">
+                            <span class="icon">
+                            <i class="fas fa-highlighter"></i>
+                            </span> {{'watchlist'|load_lang}}</a>
+                            <a href="/star_doc" class="navbar-item">
+                            <span class="icon">
+                            <i class="fas fa-star"></i>
+                            </span> {{'star_doc'|load_lang}}</a>
+                            {% endif %}
+                            <div class="navbar-divider"></div>
+                            {% if user_login == 1 %}
+                            <a href="/logout" class="navbar-item">
+                            <span class="icon">
+                            <i class="fas fa-sign-in-alt"></i>
+                            </span> {{'logout'|load_lang}}</a>
+                            {% else %}
+                            <a href="/login" class="navbar-item">
+                            <span class="icon">
+                            <i class="fas fa-user-edit"></i>
+                            </span> {{'login'|load_lang}}</a>
+                            <a href="/register" class="navbar-item">
+                            <span class="icon">
+                            <i class="fas fa-user-plus"></i>
+                            </span> {{'register'|load_lang}}</a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -194,88 +191,88 @@
 						{% else %}
 							{{last_edit}}에 마지막으로 수정됐습니다.
 						{% endif %}
+                    </h2>
                 </div>
             </div>
             <div class="hero-foot">
                 <div class="container">
                     <div class="tabs is-left is-boxed" id="wiki-article-menu">
                         <ul id="wiki-menu">
-                            {% set special = ["최근 편집", "최근 토론", "차단 기록", "사용자 목록", "관리자 목록", "권한 사용 목록", "관리 도구"] %}
-                            {% if title in special %}
-				<li class="is-active">
-					<a href="#">
-						<span class="icon">
-							<i class="fas fa-cogs"></i>
-						</span>
-						<span class="wiki-article-menu-text is-hidden-touch"> 특수 문서</span>
-					</a>
-				</li>
-				{% else %}
-					<ul id="wiki-menu">
-						<li{% if last_edit != 0 %} class="is-active"{% endif %}>
-							<a href="/w/{{title}}">
-								<span class="icon">
-									<i class="fas fa-eye"></i>
-								</span>
-								<span class="wiki-article-menu-text is-hidden-touch"> 읽기</span>
-							</a>
-						</li>
-						<li{% if sub_title == '(편집)' %} class=is-active{% endif %}>
-							<a href="/edit/{{title}}" class="edit-anchor">
-								<span class="icon">
-									<i class="fas fa-edit"></i>
-								</span>
-								<span class="wiki-article-menu-text is-hidden-touch"> 편집</span>
-							</a>
-						</li>
-						<li{% if sub_title == '(토론)' or sub_title == '(토론 목록)' or sub_title == '(합의된 토론)' or sub_title == '(닫힌 토론)' %} class=is-active{% endif %}>
-										<a href="/topic/{{title}}">
-										<span class="icon">
-										<i class="far fa-comments"></i>
-										</span>
-										<span class="wiki-article-menu-text is-hidden-touch"> 토론</span>
-										</a>
-									</li>
-									<li{% if sub_title == '(이동)' %} class=is-active{% endif %}>
-										<a href="/move/{{title}}">
-										<span class="icon">
-										<i class="fas fa-arrow-right"></i>
-										</span>
-										<span class="wiki-article-menu-text is-hidden-touch"> 이동</span>
-										</a>
-									</li>
-									<li{% if sub_title == '(삭제)' %} class=is-active{% endif %}>
-										<a href="/delete/{{title}}">
-										<span class="icon">
-										<i class="far fa-trash-alt"></i>
-										</span>
-										<span class="wiki-article-menu-text is-hidden-touch"> 삭제</span>
-										</a>
-									</li>
-									<li{% if sub_title == '(역링크)' %} class=is-active{% endif %}>
-										<a href="/xref/{{title}}">
-										<span class="icon">
-										<i class="fas fa-random"></i>
-										</span>
-										<span class="wiki-article-menu-text is-hidden-touch"> 역링크</span>
-										</a>
-									</li>
-									<li{% if sub_title == '(역사)' %} class=is-active{% endif %}>
-										<a href="/history/{{title}}" class="history-anchor">
-										<span class="icon">
-										<i class="fas fa-history"></i>
-										</span>
-										<span class="wiki-article-menu-text is-hidden-touch"> 역사</span>
-										</a>
-									</li>
-									<li{% if sub_title == '(ACL)' %} class=is-active{% endif %}>
-										<a href="/acl/{{title}}">
-										<span class="icon">
-										<i class="fas fa-key"></i>
-										</span>
-										<span class="wiki-article-menu-text is-hidden-touch"> ACL</span>
-										</a>
-									</li>
+                            <!-- Pongo2 문법 오류 및 중복 ul 태그 수정 -->
+                            {% if title == "최근 편집" or title == "최근 토론" or title == "차단 기록" or title == "사용자 목록" or title == "관리자 목록" or title == "권한 사용 목록" or title == "관리 도구" %}
+                                <li class="is-active">
+                                    <a href="#">
+                                        <span class="icon">
+                                            <i class="fas fa-cogs"></i>
+                                        </span>
+                                        <span class="wiki-article-menu-text is-hidden-touch"> 특수 문서</span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li{% if last_edit != 0 %} class="is-active"{% endif %}>
+                                    <a href="/w/{{title}}">
+                                        <span class="icon">
+                                            <i class="fas fa-eye"></i>
+                                        </span>
+                                        <span class="wiki-article-menu-text is-hidden-touch"> 읽기</span>
+                                    </a>
+                                </li>
+                                <li{% if sub_title == '(편집)' %} class=is-active{% endif %}>
+                                    <a href="/edit/{{title}}" class="edit-anchor">
+                                        <span class="icon">
+                                            <i class="fas fa-edit"></i>
+                                        </span>
+                                        <span class="wiki-article-menu-text is-hidden-touch"> 편집</span>
+                                    </a>
+                                </li>
+                                <li{% if sub_title == '(토론)' or sub_title == '(토론 목록)' or sub_title == '(합의된 토론)' or sub_title == '(닫힌 토론)' %} class=is-active{% endif %}>
+                                    <a href="/topic/{{title}}">
+                                    <span class="icon">
+                                    <i class="far fa-comments"></i>
+                                    </span>
+                                    <span class="wiki-article-menu-text is-hidden-touch"> 토론</span>
+                                    </a>
+                                </li>
+                                <li{% if sub_title == '(이동)' %} class=is-active{% endif %}>
+                                    <a href="/move/{{title}}">
+                                    <span class="icon">
+                                    <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                    <span class="wiki-article-menu-text is-hidden-touch"> 이동</span>
+                                    </a>
+                                </li>
+                                <li{% if sub_title == '(삭제)' %} class=is-active{% endif %}>
+                                    <a href="/delete/{{title}}">
+                                    <span class="icon">
+                                    <i class="far fa-trash-alt"></i>
+                                    </span>
+                                    <span class="wiki-article-menu-text is-hidden-touch"> 삭제</span>
+                                    </a>
+                                </li>
+                                <li{% if sub_title == '(역링크)' %} class=is-active{% endif %}>
+                                    <a href="/xref/{{title}}">
+                                    <span class="icon">
+                                    <i class="fas fa-random"></i>
+                                    </span>
+                                    <span class="wiki-article-menu-text is-hidden-touch"> 역링크</span>
+                                    </a>
+                                </li>
+                                <li{% if sub_title == '(역사)' %} class=is-active{% endif %}>
+                                    <a href="/history/{{title}}" class="history-anchor">
+                                    <span class="icon">
+                                    <i class="fas fa-history"></i>
+                                    </span>
+                                    <span class="wiki-article-menu-text is-hidden-touch"> 역사</span>
+                                    </a>
+                                </li>
+                                <li{% if sub_title == '(ACL)' %} class=is-active{% endif %}>
+                                    <a href="/acl/{{title}}">
+                                    <span class="icon">
+                                    <i class="fas fa-key"></i>
+                                    </span>
+                                    <span class="wiki-article-menu-text is-hidden-touch"> ACL</span>
+                                    </a>
+                                </li>
                             {% endif %}
                         </ul>
                     </div>
@@ -306,7 +303,7 @@
             </a>
             <a id="go_bottom" href="#bottom">
                 <div class="fas fa-arrow-down"></div>
-            </a>                  
+            </a>                                     
         </div>
 		<script>window.addEventListener('DOMContentLoaded', skin_set);</script>
     </body>
