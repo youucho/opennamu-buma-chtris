@@ -2,15 +2,15 @@
 <html>
     <head>
         <meta charset="utf-8">
-        {% if imp[3][0] != 0 %}
-            <title>{{imp[0]}} {{imp[3][0]}} - {{imp[1][0]}}</title>
+        {% if sub_title != 0 %}
+            <title>{{title}} {{sub_title}} - {{wiki_name}}</title>
         {% else %}
-            <title>{{imp[0]}} - {{imp[1][0]}}</title>
+            <title>{{title}} - {{wiki_name}}</title>
         {% endif %}
         <link rel="stylesheet" href="/views/buma/css/bootstrap-custom.css.cache_v1">
         <link rel="stylesheet" href="/views/buma/css/jquery-ui.min.css.cache_v1">
         <link rel="stylesheet" href="/views/buma/css/fa-svg-with-js.css.cache_v1">
-		{{imp[3][3]|safe}}
+		{{main_head|safe}}
         <link rel="stylesheet" href="/views/buma/css/bulma.css.cache_v1">
         <link rel="stylesheet" href="/views/buma/css/bulma.css.map.cache_v1">
 		<link rel="stylesheet" href="/views/buma/css/more.css.cache_v2">
@@ -28,15 +28,15 @@
         <script type="text/javascript" src="/views/buma/js/all.min.js.cache_v1"></script>
 		<script type="text/javascript" src="/views/buma/js/skin_set.js.cache_v2"></script>
 		<script src="https://kit.fontawesome.com/de96a6a0bf.js" crossorigin="anonymous"></script>
-        {{imp[1][5]|safe}}
-        {{imp[2][3]|safe}}
-        {% if imp[3][0] != 0 %}
-            <meta name="title" content="{{imp[0]}}{{imp[3][0]}} - {{imp[1][0]}}">
+        {{teplate_var_1|safe}}
+        {{user_head|safe}}
+        {% if sub_title != 0 %}
+            <meta name="title" content="{{title}}{{sub_title}} - {{wiki_name}}">
         {% else %}
-            <meta name="title" content="{{imp[0]}} - {{imp[1][0]}}">
+            <meta name="title" content="{{title}} - {{wiki_name}}">
         {% endif %}
-        <meta name="keywords" content="{{imp[0]}}">
-        {% if imp[2][12] != 0 and imp[2][12] == 'w' %}
+        <meta name="keywords" content="{{title}}">
+        {% if user_path != 0 and user_path == 'w' %}
             <meta name="description" content="{{data|cut_100}}">
         {% endif %}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -45,7 +45,7 @@
     <body class="buma">
         <div id="top" class="nav navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-                <a href="/" class="navbar-item">{{imp[1][4]|safe}}</a>
+                <a href="/" class="navbar-item">{{wiki_logo|safe}}</a>
                 <button class="button navbar-burger" data-target="mainNavbar">
                     <span></span>
                     <span></span>
@@ -80,7 +80,7 @@
                             <a class="dropdown-item" href="/list/user"><span class="fa fa-users"></span><span class="hide-title"> {{'member_list'|load_lang}}</span></a>
                             <a class="dropdown-item" href="/list/admin"><span class="fa fa-user-secret"></span><span class="hide-title"> {{'admin_list'|load_lang}}</span></a>
                             <a class="dropdown-item" href="/list/admin/auth_use"><span class="fa fa-outdent"></span><span class="hide-title"> {{'authority_use_list'|load_lang}}</span></a>
-                            {% if imp[2][9] != '0' %}
+                            {% if user_auth != '0' %}
                                 <a class="dropdown-item" href="/manager/1"><i class="fas fa-sliders-h"></i><span class="hide-title"> {{'admin_tool'|load_lang}}</span></a>
                             {% endif %}
                         </div>
@@ -114,10 +114,10 @@
                     </div>
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a href="#" class="navbar-link">
-				{% if imp[2][2] == 1 %}
+				{% if user_login == 1 %}
 					<span class="nav-icon">
 					<i class="fas fa-user"></i>
-					</span> {{imp[2][5]}}</a>
+					</span> {{user_name}}</a>
 				{% else %}
 					<span class="nav-icon">
 					<i class="fas fa-user-secret"></i>
@@ -132,22 +132,22 @@
 								<span class="icon">
 								<i class="fas fa-user-cog"></i>
 								</span> {{'user_setting'|load_lang}}</a>
-								{% if imp[2][2] == 1 %}
-								<a href="/w/user:{{imp[2][10]}}" class="navbar-item">
+								{% if user_login == 1 %}
+								<a href="/w/user:{{user_ip}}" class="navbar-item">
 								<span class="icon">
 								<i class="fas fa-user-tag"></i>
 								</span> {{'user_document'|load_lang}}</a>
 								{% endif %}
 								<div class="navbar-divider"></div>
-								<a href="/record/{{imp[2][10]}}" class="navbar-item">
+								<a href="/record/{{user_ip}}" class="navbar-item">
 								<span class="icon">
 								<i class="fas fa-chart-line"></i>
 								</span> {{'edit_record'|load_lang}}</a>
-								<a href="/record/topic/{{imp[2][10]}}" class="navbar-item">
+								<a href="/record/topic/{{user_ip}}" class="navbar-item">
 								<span class="icon">
 								<i class="fas fa-chart-bar"></i>
 								</span> {{'discussion_record'|load_lang}}</a>
-								{% if imp[2][2] == 1 %}
+								{% if user_login == 1 %}
 								<a href="/watch_list" class="navbar-item">
 								<span class="icon">
 								<i class="fas fa-highlighter"></i>
@@ -158,7 +158,7 @@
 								</span> {{'star_doc'|load_lang}}</a>
 								{% endif %}
 								<div class="navbar-divider"></div>
-								{% if imp[2][2] == 1 %}
+								{% if user_login == 1 %}
 								<a href="/logout" class="navbar-item">
 								<span class="icon">
 								<i class="fas fa-sign-in-alt"></i>
@@ -183,16 +183,16 @@
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">
-                        {{imp[0]}}
-						{% if imp[3][0] != 0 %}
-                            {{imp[3][0]}}
+                        {{title}}
+						{% if sub_title != 0 %}
+                            {{sub_title}}
                         {% endif %}
                     </h1>
 					<h2 class="subtitle">
-						{% if imp[3][1] == 0 %}
+						{% if last_edit == 0 %}
 							Powered by openNAMU
 						{% else %}
-							{{imp[3][1]}}에 마지막으로 수정됐습니다.
+							{{last_edit}}에 마지막으로 수정됐습니다.
 						{% endif %}
                 </div>
             </div>
@@ -201,7 +201,7 @@
                     <div class="tabs is-left is-boxed" id="wiki-article-menu">
                         <ul id="wiki-menu">
                             {% set special = ["최근 편집", "최근 토론", "차단 기록", "사용자 목록", "관리자 목록", "권한 사용 목록", "관리 도구"] %}
-                            {% if imp[0] in special %}
+                            {% if title in special %}
 				<li class="is-active">
 					<a href="#">
 						<span class="icon">
@@ -212,64 +212,64 @@
 				</li>
 				{% else %}
 					<ul id="wiki-menu">
-						<li{% if imp[3][1] != 0 %} class="is-active"{% endif %}>
-							<a href="/w/{{imp[0]}}">
+						<li{% if last_edit != 0 %} class="is-active"{% endif %}>
+							<a href="/w/{{title}}">
 								<span class="icon">
 									<i class="fas fa-eye"></i>
 								</span>
 								<span class="wiki-article-menu-text is-hidden-touch"> 읽기</span>
 							</a>
 						</li>
-						<li{% if imp[3][0] == '(편집)' %} class=is-active{% endif %}>
-							<a href="/edit/{{imp[0]}}" class="edit-anchor">
+						<li{% if sub_title == '(편집)' %} class=is-active{% endif %}>
+							<a href="/edit/{{title}}" class="edit-anchor">
 								<span class="icon">
 									<i class="fas fa-edit"></i>
 								</span>
 								<span class="wiki-article-menu-text is-hidden-touch"> 편집</span>
 							</a>
 						</li>
-						<li{% if imp[3][0] == '(토론)' or imp[3][0] == '(토론 목록)' or imp[3][0] == '(합의된 토론)' or imp[3][0] == '(닫힌 토론)' %} class=is-active{% endif %}>
-										<a href="/topic/{{imp[0]}}">
+						<li{% if sub_title == '(토론)' or sub_title == '(토론 목록)' or sub_title == '(합의된 토론)' or sub_title == '(닫힌 토론)' %} class=is-active{% endif %}>
+										<a href="/topic/{{title}}">
 										<span class="icon">
 										<i class="far fa-comments"></i>
 										</span>
 										<span class="wiki-article-menu-text is-hidden-touch"> 토론</span>
 										</a>
 									</li>
-									<li{% if imp[3][0] == '(이동)' %} class=is-active{% endif %}>
-										<a href="/move/{{imp[0]}}">
+									<li{% if sub_title == '(이동)' %} class=is-active{% endif %}>
+										<a href="/move/{{title}}">
 										<span class="icon">
 										<i class="fas fa-arrow-right"></i>
 										</span>
 										<span class="wiki-article-menu-text is-hidden-touch"> 이동</span>
 										</a>
 									</li>
-									<li{% if imp[3][0] == '(삭제)' %} class=is-active{% endif %}>
-										<a href="/delete/{{imp[0]}}">
+									<li{% if sub_title == '(삭제)' %} class=is-active{% endif %}>
+										<a href="/delete/{{title}}">
 										<span class="icon">
 										<i class="far fa-trash-alt"></i>
 										</span>
 										<span class="wiki-article-menu-text is-hidden-touch"> 삭제</span>
 										</a>
 									</li>
-									<li{% if imp[3][0] == '(역링크)' %} class=is-active{% endif %}>
-										<a href="/xref/{{imp[0]}}">
+									<li{% if sub_title == '(역링크)' %} class=is-active{% endif %}>
+										<a href="/xref/{{title}}">
 										<span class="icon">
 										<i class="fas fa-random"></i>
 										</span>
 										<span class="wiki-article-menu-text is-hidden-touch"> 역링크</span>
 										</a>
 									</li>
-									<li{% if imp[3][0] == '(역사)' %} class=is-active{% endif %}>
-										<a href="/history/{{imp[0]}}" class="history-anchor">
+									<li{% if sub_title == '(역사)' %} class=is-active{% endif %}>
+										<a href="/history/{{title}}" class="history-anchor">
 										<span class="icon">
 										<i class="fas fa-history"></i>
 										</span>
 										<span class="wiki-article-menu-text is-hidden-touch"> 역사</span>
 										</a>
 									</li>
-									<li{% if imp[3][0] == '(ACL)' %} class=is-active{% endif %}>
-										<a href="/acl/{{imp[0]}}">
+									<li{% if sub_title == '(ACL)' %} class=is-active{% endif %}>
+										<a href="/acl/{{title}}">
 										<span class="icon">
 										<i class="fas fa-key"></i>
 										</span>
@@ -293,7 +293,7 @@
             <div class="container">
                 <div class="contents has-text-centered">
                     <p id="bottom">
-                        {{imp[1][1]|safe}}
+                        {{license|safe}}
                         <br><br>
                         <a href="https://github.com/daol-project/Buma-skin">Buma</a> | <a href="https://github.com/openNAMU/openNAMU">openNAMU</a>
                     </p>
